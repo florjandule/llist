@@ -14,6 +14,7 @@
  ************************************/
 
 #include "llist.h"
+#include <stdlib.h>
 
 /************************************
  * EXTERN VARIABLES
@@ -30,6 +31,8 @@
 /************************************
  * STATIC VARIABLES
  ************************************/
+static llist_malloc_fn heap_malloc = malloc;
+static llist_free_fn heap_free = free;
 
 /************************************
  * GLOBAL VARIABLES
@@ -46,3 +49,16 @@
 /************************************
  * GLOBAL FUNCTIONS
  ************************************/
+
+int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn)
+{
+	if (malloc_fn == NULL || free_fn == NULL)
+	{
+		return -1;
+	}
+
+	heap_malloc = malloc_fn;
+	heap_free = free_fn;
+
+	return 0;
+}

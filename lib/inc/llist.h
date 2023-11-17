@@ -20,6 +20,8 @@ extern "C" {
  * INCLUDES
  ************************************/
 
+#include <stddef.h>
+
 /************************************
  * MACROS AND DEFINES
  ************************************/
@@ -27,6 +29,9 @@ extern "C" {
 /************************************
  * TYPEDEFS
  ************************************/
+
+typedef void* (*llist_malloc_fn)(size_t size);
+typedef void (*llist_free_fn)(void*);
 
 /************************************
  * EXPORTED VARIABLES
@@ -36,6 +41,7 @@ extern "C" {
  * GLOBAL FUNCTION PROTOTYPES
  ************************************/
 
+int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn);
 
 #ifdef __cplusplus
 }
