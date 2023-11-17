@@ -1,12 +1,12 @@
 /**
  * @file llist.h
  * @author Florjan Dule (florjan.dule.eee@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-11-17
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #ifndef _LLIST_H_
