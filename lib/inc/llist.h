@@ -84,7 +84,7 @@ int llist_remove(llist_t* list, llist_node_t* node);
 
 int llist_clear(llist_t* list);
 
-llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const void* data);
+llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, const void* data);
 
 #ifdef __cplusplus
 }
