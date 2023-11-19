@@ -291,3 +291,33 @@ void* llist_value_at(llist_t* list, size_t index)
 	return current->data;
 }
 
+int llist_remove(llist_t* list, llist_node_t* node)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	if (list->head == node)
+	{
+		return llist_pop_front(list);
+	}
+	if (list->tail == node)
+	{
+		return llist_pop_back(list);
+	}
+	llist_node_t* current = list->head;
+	while (current && current->next != node)
+	{
+		current = current->next;
+	}
+	if (!current)
+	{
+		return -1;
+	}
+	current->next = node->next;
+	heap_free(node);
+	list->size--;
+	return 0;
+}
+
