@@ -8,22 +8,14 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Macro to add google unit tests
-# you may pass include directory as 2nd parameter and library to be linked as 3rd parameter
-macro(add_gtest TESTNAME SRC)
-  # create an executable in which the tests will be stored
-  add_executable(${TESTNAME} ${SRC})
+add_executable(TEST_llist "llist.test.cpp")
 
-  target_include_directories(${TESTNAME} PUBLIC ${ARGV2})
+target_include_directories(TEST_llist PUBLIC 
+${CMAKE_SOURCE_DIR}/lib/src
+${CMAKE_SOURCE_DIR}/lib/inc
+)
 
-  # link the Google test infrastructure, mocking library, and a default main function to
-  # the test executable.  Remove g_test_main if writing your own main function.
-  target_link_libraries(${TESTNAME} ${ARGV3} GTest::gtest_main)
-  include(GoogleTest)
+include(GoogleTest)
+target_link_libraries(TEST_llist GTest::gtest_main)
 
-  gtest_discover_tests(${TESTNAME}
-  )
-endmacro()
-
-add_gtest(TEST_void "void.test.cpp" "${CMAKE_SOURCE_DIR}/lib/include" LLISTLIB)
-add_gtest(TEST_llist "llist.test.cpp" "${CMAKE_SOURCE_DIR}/lib/include" LLISTLIB)
+gtest_discover_tests(TEST_llist)
