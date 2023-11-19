@@ -68,7 +68,7 @@ int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn)
 llist_t* llist_create(void)
 {
 	llist_t* list = heap_malloc(sizeof(llist_t));
-	if (list == NULL)
+	if (NULL == list)
 	{
 		return NULL;
 	}
@@ -80,7 +80,7 @@ llist_t* llist_create(void)
 
 int llist_destroy(llist_t* list)
 {
-	if (list == NULL)
+	if (NULL == list)
 	{
 		return -1;
 	}
