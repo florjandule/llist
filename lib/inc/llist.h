@@ -43,8 +43,8 @@ typedef struct llist_t
 	size_t size;
 } llist_t;
 
-typedef void* (*llist_malloc_fn)(size_t size);
-typedef void (*llist_free_fn)(void*);
+typedef void* (*llist_malloc_fn_t)(size_t size);
+typedef void (*llist_free_fn_t)(void* ptr);
 
 typedef int (*llist_compare_fn_t)(const void*, const void*);
 
@@ -56,7 +56,7 @@ typedef int (*llist_compare_fn_t)(const void*, const void*);
  * GLOBAL FUNCTION PROTOTYPES
  ************************************/
 
-int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn);
+int llist_set_heap_functions(llist_malloc_fn_t malloc_fn, llist_free_fn_t free_fn);
 
 llist_t* llist_create(void);
 

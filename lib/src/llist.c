@@ -33,8 +33,8 @@
 /************************************
  * STATIC VARIABLES
  ************************************/
-static llist_malloc_fn heap_malloc = malloc;
-static llist_free_fn heap_free = free;
+static llist_malloc_fn_t heap_malloc = malloc;
+static llist_free_fn_t heap_free = free;
 
 /************************************
  * GLOBAL VARIABLES
@@ -52,7 +52,7 @@ static llist_free_fn heap_free = free;
  * GLOBAL FUNCTIONS
  ************************************/
 
-int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn)
+int llist_set_heap_functions(llist_malloc_fn_t malloc_fn, llist_free_fn_t free_fn)
 {
 	if (malloc_fn == NULL || free_fn == NULL)
 	{
