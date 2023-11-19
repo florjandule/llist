@@ -233,3 +233,26 @@ int llist_prepend_node(llist_t* list, const llist_node_t* reference_node, void* 
 	return 0;
 }
 
+int llist_append_node(llist_t* list, llist_node_t* reference_node, void* data)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	llist_node_t* new_node = heap_malloc(sizeof(llist_node_t));
+	if (!new_node)
+	{
+		return -1;
+	}
+	new_node->data = data;
+	new_node->next = reference_node->next;
+	reference_node->next = new_node;
+	if (list->tail == reference_node)
+	{
+		list->tail = new_node;
+	}
+	list->size++;
+
+	return 0;
+}
