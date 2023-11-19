@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.14.0)
 project(LLIST
     VERSION 00.01.00
     DESCRIPTION "Linked List Library"
-    LANGUAGES C
+    LANGUAGES C CXX
     HOMEPAGE_URL "https://github.com/florjandule/llist.git"
 )
 
@@ -11,6 +11,10 @@ project(LLIST
 if(PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
     # Set the C standard to C99
     set(CMAKE_C_STANDARD 99)
+    
+    # GoogleTest requires at least C++14
+    set(CMAKE_CXX_STANDARD 14)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
     # Set the compiler flags
     if(NOT MSVC)
@@ -18,6 +22,10 @@ if(PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
     endif()
     # Build samples
     add_subdirectory(samples)
+
+    # Build tests
+    include(CTest)
+    add_subdirectory(test)
 endif()
 
 add_subdirectory(lib)
