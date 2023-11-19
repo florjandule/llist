@@ -31,27 +31,6 @@ extern "C" {
  ************************************/
 
 /**
- * @brief Linked List Node Structure
- *
- */
-typedef struct llist_node_s
-{
-	void* data; ///< Pointer to the data
-	struct llist_node_s* next; ///< Pointer to the next node
-} llist_node_t;
-
-/**
- * @brief Linked List Structure
- *
- */
-typedef struct llist_s
-{
-	llist_node_t* head; ///< Pointer to the head node
-	llist_node_t* tail; ///< Pointer to the tail node
-	size_t size; ///< Size of the list
-} llist_t;
-
-/**
  * @brief Function type for memory allocation
  *
  */
@@ -70,6 +49,28 @@ typedef void (*llist_free_fn_t)(void* ptr);
  *
  */
 typedef int (*llist_compare_fn_t)(const void* a, const void* b);
+
+/**
+ * @brief Linked List Node Structure
+ *
+ */
+typedef struct llist_node_s
+{
+	void* data; ///< Pointer to the data
+	struct llist_node_s* next; ///< Pointer to the next node
+} llist_node_t;
+
+/**
+ * @brief Linked List Structure
+ *
+ */
+typedef struct llist_s
+{
+	llist_node_t* head; ///< Pointer to the head node
+	llist_node_t* tail; ///< Pointer to the tail node
+	size_t size; ///< Size of the list
+	llist_free_fn_t free_fn; ///< Pointer to the free data function
+} llist_t;
 
 /************************************
  * EXPORTED VARIABLES
@@ -91,14 +92,18 @@ int llist_set_memory_management_functions(llist_malloc_fn_t malloc_fn, llist_fre
 /**
  * @brief Create a linked list object
  *
+ * @param [in] free_fn Pointer to the free data function (optional).
+ * If set data will be freed when the node is removed from the list.
+ * If \c NULL the data will not be freed, so, the user is responsible for freeing the data.
  * @return llist_t* Pointer to the linked list object if successful, otherwise \c NULL
  */
-llist_t* llist_create(void);
+llist_t* llist_create(llist_free_fn_t free_fn);
 
 /**
  * @brief Destroy the linked list object
  *
  * @details Removes all the nodes from the list
+ * @details If the free data function is set, it will be called for each node
  *
  * @param [in] list Pointer to the linked list object
  * @return int \c 0 if successful, otherwise \c -1
@@ -126,6 +131,8 @@ int llist_push_back(llist_t* list, void* data);
 /**
  * @brief Removes the data from the front of the list
  *
+ * @details If the free data function is set, it will be called for the node
+ *
  * @param [in] list Pointer to the linked list object
  * @return int \c 0 if successful, otherwise \c -1
  */
@@ -133,6 +140,8 @@ int llist_pop_front(llist_t* list);
 
 /**
  * @brief Removes the data from the back of the list
+ *
+ * @details If the free data function is set, it will be called for the node
  *
  * @param [in] list Pointer to the linked list object
  * @return int \c 0 if successful, otherwise \c -1
@@ -149,6 +158,8 @@ size_t llist_size(const llist_t* list);
 
 /**
  * @brief Removes all the nodes from the list
+ *
+ * @details If the free data function is set, it will be called for each node
  *
  * @param [in] list Pointer to the linked list object
  * @return int \c 0 if successful, otherwise \c -1
@@ -227,6 +238,8 @@ void* llist_get_node_value(const llist_node_t* node);
 
 /**
  * @brief Remove a node from the list
+ *
+ * @details If the free data function is set, it will be called for the node
  *
  * @param [in] list Pointer to the linked list object
  * @param [in] node Pointer to the node
