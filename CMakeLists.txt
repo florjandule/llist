@@ -13,8 +13,9 @@ if(PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
     set(CMAKE_C_STANDARD 99)
 
     # Set the compiler flags
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror -Wall -Wextra")
-
+    if(NOT MSVC)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror -Wall -Wextra")
+    endif()
     # Build samples
     add_subdirectory(samples)
 endif()
