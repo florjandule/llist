@@ -369,3 +369,13 @@ llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, cons
 	}
 	return NULL;
 }
+
+llist_node_t* llist_get_first_node(const llist_t* list)
+{
+	if (NULL == list)
+	{
+		return NULL;
+	}
+
+	return list->head;
+}
