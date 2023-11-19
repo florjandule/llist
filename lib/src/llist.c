@@ -389,3 +389,13 @@ llist_node_t* llist_get_last_node(const llist_t* list)
 
 	return list->tail;
 }
+
+llist_node_t* llist_get_next_node(const llist_node_t* node)
+{
+	if (NULL == node)
+	{
+		return NULL;
+	}
+
+	return node->next;
+}

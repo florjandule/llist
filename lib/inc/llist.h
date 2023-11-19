@@ -92,6 +92,8 @@ llist_node_t* llist_get_first_node(const llist_t* list);
 
 llist_node_t* llist_get_last_node(const llist_t* list);
 
+llist_node_t* llist_get_next_node(const llist_node_t* node);
+
 #ifdef __cplusplus
 }
 #endif
