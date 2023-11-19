@@ -67,7 +67,7 @@ int llist_set_memory_management_functions(llist_malloc_fn_t malloc_fn, llist_fre
 
 llist_t* llist_create(llist_free_fn_t free_fn)
 {
-	llist_t* list = heap_malloc(sizeof(llist_t));
+	llist_t* list = (llist_t*)heap_malloc(sizeof(llist_t));
 	if (NULL == list)
 	{
 		return NULL;
@@ -100,7 +100,7 @@ int llist_push_front(llist_t* list, void* data)
 	{
 		return -1;
 	}
-	llist_node_t* node = heap_malloc(sizeof(llist_node_t));
+	llist_node_t* node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
 	if (!node)
 	{
 		return -1;
@@ -123,7 +123,7 @@ int llist_push_back(llist_t* list, void* data)
 		return -1;
 	}
 
-	llist_node_t* node = heap_malloc(sizeof(llist_node_t));
+	llist_node_t* node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
 	if (!node)
 	{
 		return -1;
@@ -306,7 +306,7 @@ int llist_insert_before_node(llist_t* list, const llist_node_t* reference_node, 
 		return llist_push_front(list, data);
 	}
 
-	llist_node_t* new_node = heap_malloc(sizeof(llist_node_t));
+	llist_node_t* new_node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
 	if (!new_node)
 	{
 		return -1;
@@ -339,7 +339,7 @@ int llist_insert_after_node(llist_t* list, llist_node_t* reference_node, void* d
 		return -1;
 	}
 
-	llist_node_t* new_node = heap_malloc(sizeof(llist_node_t));
+	llist_node_t* new_node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
 	if (!new_node)
 	{
 		return -1;
