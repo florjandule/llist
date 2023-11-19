@@ -78,6 +78,8 @@ size_t llist_size(const llist_t* list);
 
 int llist_is_empty(const llist_t* list);
 
+void* llist_get_node_value(const llist_node_t* node);
+
 void* llist_get_value_at(llist_t* list, size_t index);
 
 int llist_remove(llist_t* list, llist_node_t* node);
