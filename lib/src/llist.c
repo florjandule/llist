@@ -65,7 +65,7 @@ int llist_set_memory_management_functions(llist_malloc_fn_t malloc_fn, llist_fre
 	return 0;
 }
 
-llist_t* llist_create(void)
+llist_t* llist_create(llist_free_fn_t free_fn)
 {
 	llist_t* list = heap_malloc(sizeof(llist_t));
 	if (NULL == list)
@@ -74,6 +74,8 @@ llist_t* llist_create(void)
 	}
 
 	memset(list, 0, sizeof(llist_t));
+
+	list->free_fn = free_fn;
 
 	return list;
 }
@@ -158,6 +160,10 @@ int llist_pop_front(llist_t* list)
 	{
 		list->tail = NULL;
 	}
+	if (list->free_fn)
+	{
+		list->free_fn(node->data);
+	}
 	heap_free(node);
 	list->size--;
 	return 0;
@@ -190,6 +196,11 @@ int llist_pop_back(llist_t* list)
 		current->next = NULL;
 		list->tail = current;
 	}
+
+	if (list->free_fn)
+	{
+		list->free_fn(node->data);
+	}
 	heap_free(node);
 	list->size--;
 	return 0;
@@ -216,6 +227,10 @@ int llist_clear(llist_t* list)
 	while (current)
 	{
 		llist_node_t* next = current->next;
+		if (list->free_fn)
+		{
+			list->free_fn(current->data);
+		}
 		heap_free(current);
 		current = next;
 	}
@@ -376,6 +391,10 @@ int llist_remove_node(llist_t* list, llist_node_t* node)
 		return -1;
 	}
 	current->next = node->next;
+	if (list->free_fn)
+	{
+		list->free_fn(node->data);
+	}
 	heap_free(node);
 	list->size--;
 	return 0;
