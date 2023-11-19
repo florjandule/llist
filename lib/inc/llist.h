@@ -30,13 +30,13 @@ extern "C" {
  * TYPEDEFS
  ************************************/
 
-typedef struct llist_node_t
+typedef struct llist_node_s
 {
 	void* data;
-	struct llist_node_t* next;
+	struct llist_node_s* next;
 } llist_node_t;
 
-typedef struct llist_t
+typedef struct llist_s
 {
 	llist_node_t* head;
 	llist_node_t* tail;
