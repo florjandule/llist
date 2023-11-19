@@ -195,6 +195,90 @@ int llist_pop_back(llist_t* list)
 	return 0;
 }
 
+size_t llist_size(const llist_t* list)
+{
+	if (NULL == list)
+	{
+		return 0;
+	}
+
+	return list->size;
+}
+
+int llist_clear(llist_t* list)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	llist_node_t* current = list->head;
+	while (current)
+	{
+		llist_node_t* next = current->next;
+		heap_free(current);
+		current = next;
+	}
+	list->head = NULL;
+	list->tail = NULL;
+	list->size = 0;
+	return 0;
+}
+
+int llist_is_empty(const llist_t* list)
+{
+	return llist_size(list) == 0;
+}
+
+llist_node_t* llist_get_first_node(const llist_t* list)
+{
+	if (NULL == list)
+	{
+		return NULL;
+	}
+
+	return list->head;
+}
+
+llist_node_t* llist_get_last_node(const llist_t* list)
+{
+	if (NULL == list)
+	{
+		return NULL;
+	}
+
+	return list->tail;
+}
+
+llist_node_t* llist_get_next_node(const llist_node_t* node)
+{
+	if (NULL == node)
+	{
+		return NULL;
+	}
+
+	return node->next;
+}
+
+llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, const void* data)
+{
+	if (NULL == list || NULL == compare_fn)
+	{
+		return NULL;
+	}
+
+	llist_node_t* current = list->head;
+	while (current)
+	{
+		if (0 == compare_fn(current->data, data))
+		{
+			return current;
+		}
+		current = current->next;
+	}
+	return NULL;
+}
+
 int llist_insert_before_node(llist_t* list, const llist_node_t* reference_node, void* data)
 {
 	if (NULL == list)
@@ -257,21 +341,6 @@ int llist_insert_after_node(llist_t* list, llist_node_t* reference_node, void* d
 	return 0;
 }
 
-size_t llist_size(const llist_t* list)
-{
-	if (NULL == list)
-	{
-		return 0;
-	}
-
-	return list->size;
-}
-
-int llist_is_empty(const llist_t* list)
-{
-	return llist_size(list) == 0;
-}
-
 void* llist_get_node_value(const llist_node_t* node)
 {
 	if (NULL == node)
@@ -280,25 +349,6 @@ void* llist_get_node_value(const llist_node_t* node)
 	}
 
 	return node->data;
-}
-
-void* llist_get_value_at(llist_t* list, size_t index)
-{
-	if (NULL == list)
-	{
-		return NULL;
-	}
-
-	if (index >= list->size)
-	{
-		return NULL;
-	}
-	llist_node_t* current = list->head;
-	for (size_t i = 0; i < index; i++)
-	{
-		current = current->next;
-	}
-	return current->data;
 }
 
 int llist_remove_node(llist_t* list, llist_node_t* node)
@@ -331,71 +381,21 @@ int llist_remove_node(llist_t* list, llist_node_t* node)
 	return 0;
 }
 
-int llist_clear(llist_t* list)
+void* llist_get_value_at(llist_t* list, size_t index)
 {
 	if (NULL == list)
-	{
-		return -1;
-	}
-
-	llist_node_t* current = list->head;
-	while (current)
-	{
-		llist_node_t* next = current->next;
-		heap_free(current);
-		current = next;
-	}
-	list->head = NULL;
-	list->tail = NULL;
-	list->size = 0;
-	return 0;
-}
-
-llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, const void* data)
-{
-	if (NULL == list || NULL == compare_fn)
 	{
 		return NULL;
 	}
 
-	llist_node_t* current = list->head;
-	while (current)
+	if (index >= list->size)
 	{
-		if (0 == compare_fn(current->data, data))
-		{
-			return current;
-		}
+		return NULL;
+	}
+	llist_node_t* current = list->head;
+	for (size_t i = 0; i < index; i++)
+	{
 		current = current->next;
 	}
-	return NULL;
-}
-
-llist_node_t* llist_get_first_node(const llist_t* list)
-{
-	if (NULL == list)
-	{
-		return NULL;
-	}
-
-	return list->head;
-}
-
-llist_node_t* llist_get_last_node(const llist_t* list)
-{
-	if (NULL == list)
-	{
-		return NULL;
-	}
-
-	return list->tail;
-}
-
-llist_node_t* llist_get_next_node(const llist_node_t* node)
-{
-	if (NULL == node)
-	{
-		return NULL;
-	}
-
-	return node->next;
+	return current->data;
 }

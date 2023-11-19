@@ -70,29 +70,29 @@ int llist_pop_front(llist_t* list);
 
 int llist_pop_back(llist_t* list);
 
-int llist_insert_before_node(llist_t* list, const llist_node_t* reference_node, void* data);
-
-int llist_insert_after_node(llist_t* list, llist_node_t* reference_node, void* data);
-
 size_t llist_size(const llist_t* list);
-
-int llist_is_empty(const llist_t* list);
-
-void* llist_get_node_value(const llist_node_t* node);
-
-void* llist_get_value_at(llist_t* list, size_t index);
-
-int llist_remove_node(llist_t* list, llist_node_t* node);
 
 int llist_clear(llist_t* list);
 
-llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, const void* data);
+int llist_is_empty(const llist_t* list);
 
 llist_node_t* llist_get_first_node(const llist_t* list);
 
 llist_node_t* llist_get_last_node(const llist_t* list);
 
 llist_node_t* llist_get_next_node(const llist_node_t* node);
+
+llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, const void* data);
+
+int llist_insert_before_node(llist_t* list, const llist_node_t* reference_node, void* data);
+
+int llist_insert_after_node(llist_t* list, llist_node_t* reference_node, void* data);
+
+void* llist_get_node_value(const llist_node_t* node);
+
+int llist_remove_node(llist_t* list, llist_node_t* node);
+
+void* llist_get_value_at(llist_t* list, size_t index);
 
 #ifdef __cplusplus
 }
