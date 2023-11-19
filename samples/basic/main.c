@@ -44,6 +44,11 @@ int compare(const void* a, const void* b)
 	return strcmp((const char*)a, (const char*)b);
 }
 
+void free_data(void* data)
+{
+	printf("Freeing data: %s\n", (char*)data);
+}
+
 int main(int argc, char* argv[])
 {
 	(void)argc;
@@ -51,7 +56,7 @@ int main(int argc, char* argv[])
 
 	llist_set_memory_management_functions(malloc, free);
 
-	list = llist_create();
+	list = llist_create(free_data);
 
 	for (uint8_t i = 0; i < sizeof(strings) / sizeof(strings[0]); i++)
 	{
@@ -75,4 +80,9 @@ int main(int argc, char* argv[])
 	printf("List after removing node:\n");
 
 	print_list();
+
+	if (llist_destroy(list))
+	{
+		printf("Failed to destroy list\n");
+	}
 }
