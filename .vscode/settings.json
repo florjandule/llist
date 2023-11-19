@@ -2,7 +2,8 @@
     "conventionalCommits.scopes": [
         "setup",
         "llist",
-        "basic_sample"
+        "basic_sample",
+        "unit_tests"
     ],
     "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
     "editor.formatOnSave": true,
