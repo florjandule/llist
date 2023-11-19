@@ -30,6 +30,19 @@ extern "C" {
  * TYPEDEFS
  ************************************/
 
+typedef struct llist_node_t
+{
+	void* data;
+	struct llist_node_t* next;
+} llist_node_t;
+
+typedef struct llist_t
+{
+	llist_node_t* head;
+	llist_node_t* tail;
+	size_t size;
+} llist_t;
+
 typedef void* (*llist_malloc_fn)(size_t size);
 typedef void (*llist_free_fn)(void*);
 
