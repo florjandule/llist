@@ -163,3 +163,34 @@ int llist_pop_front(llist_t* list)
 	return 0;
 }
 
+int llist_pop_back(llist_t* list)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	if (!list->tail)
+	{
+		return -1;
+	}
+	llist_node_t* node = list->tail;
+	if (list->head == list->tail)
+	{
+		list->head = NULL;
+		list->tail = NULL;
+	}
+	else
+	{
+		llist_node_t* current = list->head;
+		while (current->next != list->tail)
+		{
+			current = current->next;
+		}
+		current->next = NULL;
+		list->tail = current;
+	}
+	heap_free(node);
+	list->size--;
+	return 0;
+}

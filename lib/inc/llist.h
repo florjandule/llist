@@ -66,6 +66,8 @@ int llist_push_back(llist_t* list, void* data);
 
 int llist_pop_front(llist_t* list);
 
+int llist_pop_back(llist_t* list);
+
 
 #ifdef __cplusplus
 }
