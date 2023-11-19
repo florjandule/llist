@@ -1,5 +1,11 @@
 {
     "conventionalCommits.scopes": [
-        "setup"
-    ]
+        "setup",
+        "llist",
+        "basic_sample"
+    ],
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
 }
