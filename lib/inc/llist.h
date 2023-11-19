@@ -58,6 +58,8 @@ int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn);
 
 llist_t* llist_create(void);
 
+int llist_destroy(llist_t* list);
+
 
 #ifdef __cplusplus
 }

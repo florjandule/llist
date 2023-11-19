@@ -78,3 +78,16 @@ llist_t* llist_create(void)
 	return list;
 }
 
+int llist_destroy(llist_t* list)
+{
+	if (list == NULL)
+	{
+		return -1;
+	}
+
+	llist_clear(list);
+
+	heap_free(list);
+
+	return 0;
+}
