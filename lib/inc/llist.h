@@ -56,6 +56,9 @@ typedef void (*llist_free_fn)(void*);
 
 int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn);
 
+llist_t* llist_create(void);
+
+
 #ifdef __cplusplus
 }
 #endif

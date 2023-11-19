@@ -14,7 +14,9 @@
  ************************************/
 
 #include "llist.h"
+
 #include <stdlib.h>
+#include <string.h>
 
 /************************************
  * EXTERN VARIABLES
@@ -62,3 +64,17 @@ int llist_set_heap_functions(llist_malloc_fn malloc_fn, llist_free_fn free_fn)
 
 	return 0;
 }
+
+llist_t* llist_create(void)
+{
+	llist_t* list = heap_malloc(sizeof(llist_t));
+	if (list == NULL)
+	{
+		return NULL;
+	}
+
+	memset(list, 0, sizeof(llist_t));
+
+	return list;
+}
+
