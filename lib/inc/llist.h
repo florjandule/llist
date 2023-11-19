@@ -72,7 +72,7 @@ int llist_pop_back(llist_t* list);
 
 int llist_insert_before_node(llist_t* list, const llist_node_t* reference_node, void* data);
 
-int llist_append_node(llist_t* list, llist_node_t* reference_node, void* data);
+int llist_insert_after_node(llist_t* list, llist_node_t* reference_node, void* data);
 
 size_t llist_size(const llist_t* list);
 
