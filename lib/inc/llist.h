@@ -56,7 +56,7 @@ typedef int (*llist_compare_fn_t)(const void*, const void*);
  * GLOBAL FUNCTION PROTOTYPES
  ************************************/
 
-int llist_set_heap_functions(llist_malloc_fn_t malloc_fn, llist_free_fn_t free_fn);
+int llist_set_memory_management_functions(llist_malloc_fn_t malloc_fn, llist_free_fn_t free_fn);
 
 llist_t* llist_create(void);
 

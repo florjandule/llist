@@ -52,7 +52,7 @@ static llist_free_fn_t heap_free = free;
  * GLOBAL FUNCTIONS
  ************************************/
 
-int llist_set_heap_functions(llist_malloc_fn_t malloc_fn, llist_free_fn_t free_fn)
+int llist_set_memory_management_functions(llist_malloc_fn_t malloc_fn, llist_free_fn_t free_fn)
 {
 	if (malloc_fn == NULL || free_fn == NULL)
 	{
