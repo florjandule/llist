@@ -272,7 +272,7 @@ int llist_is_empty(const llist_t* list)
 	return llist_size(list) == 0;
 }
 
-void* llist_value_at(llist_t* list, size_t index)
+void* llist_get_value_at(llist_t* list, size_t index)
 {
 	if (NULL == list)
 	{
