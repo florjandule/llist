@@ -341,3 +341,21 @@ int llist_clear(llist_t* list)
 	return 0;
 }
 
+llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const void* data)
+{
+	if (NULL == list || NULL == compare_fn)
+	{
+		return NULL;
+	}
+
+	llist_node_t* current = list->head;
+	while (current)
+	{
+		if (0 == compare_fn(current->data, data))
+		{
+			return current;
+		}
+		current = current->next;
+	}
+	return NULL;
+}

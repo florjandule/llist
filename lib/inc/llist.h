@@ -46,6 +46,8 @@ typedef struct llist_t
 typedef void* (*llist_malloc_fn)(size_t size);
 typedef void (*llist_free_fn)(void*);
 
+typedef int (*llist_compare_fn_t)(const void*, const void*);
+
 /************************************
  * EXPORTED VARIABLES
  ************************************/
@@ -82,6 +84,7 @@ int llist_remove(llist_t* list, llist_node_t* node);
 
 int llist_clear(llist_t* list);
 
+llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const void* data);
 
 #ifdef __cplusplus
 }
