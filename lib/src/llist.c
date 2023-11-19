@@ -272,3 +272,22 @@ int llist_is_empty(const llist_t* list)
 	return llist_size(list) == 0;
 }
 
+void* llist_value_at(llist_t* list, size_t index)
+{
+	if (NULL == list)
+	{
+		return NULL;
+	}
+
+	if (index >= list->size)
+	{
+		return NULL;
+	}
+	llist_node_t* current = list->head;
+	for (size_t i = 0; i < index; i++)
+	{
+		current = current->next;
+	}
+	return current->data;
+}
+
