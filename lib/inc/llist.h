@@ -80,6 +80,8 @@ void* llist_value_at(llist_t* list, size_t index);
 
 int llist_remove(llist_t* list, llist_node_t* node);
 
+int llist_clear(llist_t* list);
+
 
 #ifdef __cplusplus
 }

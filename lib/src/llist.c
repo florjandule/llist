@@ -321,3 +321,23 @@ int llist_remove(llist_t* list, llist_node_t* node)
 	return 0;
 }
 
+int llist_clear(llist_t* list)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	llist_node_t* current = list->head;
+	while (current)
+	{
+		llist_node_t* next = current->next;
+		heap_free(current);
+		current = next;
+	}
+	list->head = NULL;
+	list->tail = NULL;
+	list->size = 0;
+	return 0;
+}
+
