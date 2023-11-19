@@ -91,3 +91,25 @@ int llist_destroy(llist_t* list)
 
 	return 0;
 }
+
+int llist_push_front(llist_t* list, void* data)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+	llist_node_t* node = heap_malloc(sizeof(llist_node_t));
+	if (!node)
+	{
+		return -1;
+	}
+	node->data = data;
+	node->next = list->head;
+	list->head = node;
+	if (!list->tail)
+	{
+		list->tail = node;
+	}
+	list->size++;
+	return 0;
+}
