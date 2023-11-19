@@ -379,3 +379,13 @@ llist_node_t* llist_get_first_node(const llist_t* list)
 
 	return list->head;
 }
+
+llist_node_t* llist_get_last_node(const llist_t* list)
+{
+	if (NULL == list)
+	{
+		return NULL;
+	}
+
+	return list->tail;
+}

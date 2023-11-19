@@ -90,6 +90,7 @@ llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, cons
 
 llist_node_t* llist_get_first_node(const llist_t* list);
 
+llist_node_t* llist_get_last_node(const llist_t* list);
 
 #ifdef __cplusplus
 }
