@@ -140,3 +140,26 @@ int llist_push_back(llist_t* list, void* data)
 	list->size++;
 	return 0;
 }
+
+int llist_pop_front(llist_t* list)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	if (!list->head)
+	{
+		return -1;
+	}
+	llist_node_t* node = list->head;
+	list->head = node->next;
+	if (list->tail == node)
+	{
+		list->tail = NULL;
+	}
+	heap_free(node);
+	list->size--;
+	return 0;
+}
+
