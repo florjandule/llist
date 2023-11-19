@@ -301,7 +301,7 @@ void* llist_get_value_at(llist_t* list, size_t index)
 	return current->data;
 }
 
-int llist_remove(llist_t* list, llist_node_t* node)
+int llist_remove_node(llist_t* list, llist_node_t* node)
 {
 	if (NULL == list)
 	{

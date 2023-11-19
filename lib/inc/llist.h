@@ -82,7 +82,7 @@ void* llist_get_node_value(const llist_node_t* node);
 
 void* llist_get_value_at(llist_t* list, size_t index);
 
-int llist_remove(llist_t* list, llist_node_t* node);
+int llist_remove_node(llist_t* list, llist_node_t* node);
 
 int llist_clear(llist_t* list);
 
