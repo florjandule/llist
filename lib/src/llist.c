@@ -266,3 +266,9 @@ size_t llist_size(const llist_t* list)
 
 	return list->size;
 }
+
+int llist_is_empty(const llist_t* list)
+{
+	return llist_size(list) == 0;
+}
+

@@ -74,6 +74,8 @@ int llist_append_node(llist_t* list, llist_node_t* reference_node, void* data);
 
 size_t llist_size(const llist_t* list);
 
+int llist_is_empty(const llist_t* list);
+
 
 #ifdef __cplusplus
 }
