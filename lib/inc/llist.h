@@ -68,6 +68,8 @@ int llist_pop_front(llist_t* list);
 
 int llist_pop_back(llist_t* list);
 
+int llist_insert_before(llist_t* list, const llist_node_t* reference_node, void* data);
+
 
 #ifdef __cplusplus
 }

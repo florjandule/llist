@@ -194,3 +194,42 @@ int llist_pop_back(llist_t* list)
 	list->size--;
 	return 0;
 }
+
+int llist_insert_before(llist_t* list, const llist_node_t* reference_node, void* data)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	if (reference_node == list->head)
+	{
+		return llist_push_front(list, data);
+	}
+
+	llist_node_t* new_node = heap_malloc(sizeof(llist_node_t));
+	if (!new_node)
+	{
+		return -1;
+	}
+	new_node->data = data;
+
+	llist_node_t* current = list->head;
+	while (current && current->next != reference_node)
+	{
+		current = current->next;
+	}
+
+	if (!current)
+	{
+		heap_free(new_node);
+		return -1;
+	}
+
+	new_node->next = current->next;
+	current->next = new_node;
+	list->size++;
+
+	return 0;
+}
+
