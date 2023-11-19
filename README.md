@@ -10,7 +10,6 @@ This library provides a comprehensive set of functions for creating and managing
 - Add elements to the linked list
 - Remove elements from the linked list
 - Search for elements in the linked list
-- Other features...
 
 ## Installation
 
