@@ -113,3 +113,30 @@ int llist_push_front(llist_t* list, void* data)
 	list->size++;
 	return 0;
 }
+
+int llist_push_back(llist_t* list, void* data)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	llist_node_t* node = heap_malloc(sizeof(llist_node_t));
+	if (!node)
+	{
+		return -1;
+	}
+	node->data = data;
+	node->next = NULL;
+	if (list->tail)
+	{
+		list->tail->next = node;
+	}
+	list->tail = node;
+	if (!list->head)
+	{
+		list->head = node;
+	}
+	list->size++;
+	return 0;
+}

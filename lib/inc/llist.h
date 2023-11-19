@@ -62,6 +62,7 @@ int llist_destroy(llist_t* list);
 
 int llist_push_front(llist_t* list, void* data);
 
+int llist_push_back(llist_t* list, void* data);
 
 #ifdef __cplusplus
 }
