@@ -218,7 +218,7 @@ int llist_remove(llist_t* list, llist_node_t* node)
 	}
 	if (list->tail == node)
 	{
-		return llist_pop_back(list);
+		return llist_remove_last(list);
 	}
 	llist_node_t* current = list->head;
 	while (current && current->next != node)
@@ -265,7 +265,7 @@ int llist_remove_first(llist_t* list)
 	return 0;
 }
 
-int llist_pop_back(llist_t* list)
+int llist_remove_last(llist_t* list)
 {
 	if (NULL == list)
 	{

@@ -177,7 +177,7 @@ int llist_remove_first(llist_t* list);
  * @param [in] list Pointer to the linked list object
  * @return int \c 0 if successful, otherwise \c -1
  */
-int llist_pop_back(llist_t* list);
+int llist_remove_last(llist_t* list);
 
 /**
  * @brief Returns the size of the list
