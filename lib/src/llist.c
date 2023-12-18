@@ -30,23 +30,23 @@
  * @brief Linked List Node Structure
  *
  */
-typedef struct llist_node_s
+struct llist_node_s
 {
 	void* data; ///< Pointer to the data
 	struct llist_node_s* next; ///< Pointer to the next node
-} llist_node_t;
+};
 
 /**
  * @brief Linked List Structure
  *
  */
-typedef struct llist_s
+struct llist_s
 {
 	llist_node_t* head; ///< Pointer to the head node
 	llist_node_t* tail; ///< Pointer to the tail node
 	size_t size; ///< Size of the list
 	llist_free_fn_t free_fn; ///< Pointer to the free data function
-} llist_t;
+};
 
 /************************************
  * PRIVATE TYPEDEFS
