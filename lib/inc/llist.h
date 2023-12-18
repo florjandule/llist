@@ -51,26 +51,16 @@ typedef void (*llist_free_fn_t)(void* ptr);
 typedef int (*llist_compare_fn_t)(const void* a, const void* b);
 
 /**
- * @brief Linked List Node Structure
+ * @brief Opaque Linked List Node Structure
  *
  */
-typedef struct llist_node_s
-{
-	void* data; ///< Pointer to the data
-	struct llist_node_s* next; ///< Pointer to the next node
-} llist_node_t;
+typedef struct llist_node_s llist_node_t;
 
 /**
- * @brief Linked List Structure
+ * @brief Opaque Linked List Structure
  *
  */
-typedef struct llist_s
-{
-	llist_node_t* head; ///< Pointer to the head node
-	llist_node_t* tail; ///< Pointer to the tail node
-	size_t size; ///< Size of the list
-	llist_free_fn_t free_fn; ///< Pointer to the free data function
-} llist_t;
+typedef struct llist_s llist_t;
 
 /************************************
  * EXPORTED VARIABLES
