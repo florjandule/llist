@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 	llist_node_t* world_node = llist_find(list, compare, (void*)strings[1]);
 	if (world_node != NULL)
 	{
-		printf("Found node with data: %s\n", (char*)world_node->data);
+		printf("Found node with data: %s\n", (char*)llist_get_value(world_node));
 	}
 
 	printf("List size: %zu\n", llist_size(list));

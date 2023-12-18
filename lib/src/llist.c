@@ -26,6 +26,28 @@
  * PRIVATE MACROS AND DEFINES
  ************************************/
 
+/**
+ * @brief Linked List Node Structure
+ *
+ */
+struct llist_node_s
+{
+	void* data; ///< Pointer to the data
+	struct llist_node_s* next; ///< Pointer to the next node
+};
+
+/**
+ * @brief Linked List Structure
+ *
+ */
+struct llist_s
+{
+	llist_node_t* head; ///< Pointer to the head node
+	llist_node_t* tail; ///< Pointer to the tail node
+	size_t size; ///< Size of the list
+	llist_free_fn_t free_fn; ///< Pointer to the free data function
+};
+
 /************************************
  * PRIVATE TYPEDEFS
  ************************************/
