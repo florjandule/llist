@@ -143,6 +143,102 @@ int llist_push_back(llist_t* list, void* data)
 	return 0;
 }
 
+int llist_insert_before(llist_t* list, const llist_node_t* reference_node, void* data)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	if (reference_node == list->head)
+	{
+		return llist_push_front(list, data);
+	}
+
+	llist_node_t* new_node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
+	if (!new_node)
+	{
+		return -1;
+	}
+	new_node->data = data;
+
+	llist_node_t* current = list->head;
+	while (current && current->next != reference_node)
+	{
+		current = current->next;
+	}
+
+	if (!current)
+	{
+		heap_free(new_node);
+		return -1;
+	}
+
+	new_node->next = current->next;
+	current->next = new_node;
+	list->size++;
+
+	return 0;
+}
+
+int llist_insert_after(llist_t* list, llist_node_t* reference_node, void* data)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	llist_node_t* new_node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
+	if (!new_node)
+	{
+		return -1;
+	}
+	new_node->data = data;
+	new_node->next = reference_node->next;
+	reference_node->next = new_node;
+	if (list->tail == reference_node)
+	{
+		list->tail = new_node;
+	}
+	list->size++;
+
+	return 0;
+}
+
+int llist_remove(llist_t* list, llist_node_t* node)
+{
+	if (NULL == list)
+	{
+		return -1;
+	}
+
+	if (list->head == node)
+	{
+		return llist_remove_first(list);
+	}
+	if (list->tail == node)
+	{
+		return llist_pop_back(list);
+	}
+	llist_node_t* current = list->head;
+	while (current && current->next != node)
+	{
+		current = current->next;
+	}
+	if (!current)
+	{
+		return -1;
+	}
+	current->next = node->next;
+	if (list->free_fn)
+	{
+		list->free_fn(node->data);
+	}
+	heap_free(node);
+	list->size--;
+	return 0;
+}
+
 int llist_remove_first(llist_t* list)
 {
 	if (NULL == list)
@@ -294,68 +390,6 @@ llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const voi
 	return NULL;
 }
 
-int llist_insert_before(llist_t* list, const llist_node_t* reference_node, void* data)
-{
-	if (NULL == list)
-	{
-		return -1;
-	}
-
-	if (reference_node == list->head)
-	{
-		return llist_push_front(list, data);
-	}
-
-	llist_node_t* new_node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
-	if (!new_node)
-	{
-		return -1;
-	}
-	new_node->data = data;
-
-	llist_node_t* current = list->head;
-	while (current && current->next != reference_node)
-	{
-		current = current->next;
-	}
-
-	if (!current)
-	{
-		heap_free(new_node);
-		return -1;
-	}
-
-	new_node->next = current->next;
-	current->next = new_node;
-	list->size++;
-
-	return 0;
-}
-
-int llist_insert_after(llist_t* list, llist_node_t* reference_node, void* data)
-{
-	if (NULL == list)
-	{
-		return -1;
-	}
-
-	llist_node_t* new_node = (llist_node_t*)heap_malloc(sizeof(llist_node_t));
-	if (!new_node)
-	{
-		return -1;
-	}
-	new_node->data = data;
-	new_node->next = reference_node->next;
-	reference_node->next = new_node;
-	if (list->tail == reference_node)
-	{
-		list->tail = new_node;
-	}
-	list->size++;
-
-	return 0;
-}
-
 void* llist_get_node(const llist_node_t* node)
 {
 	if (NULL == node)
@@ -364,40 +398,6 @@ void* llist_get_node(const llist_node_t* node)
 	}
 
 	return node->data;
-}
-
-int llist_remove(llist_t* list, llist_node_t* node)
-{
-	if (NULL == list)
-	{
-		return -1;
-	}
-
-	if (list->head == node)
-	{
-		return llist_remove_first(list);
-	}
-	if (list->tail == node)
-	{
-		return llist_pop_back(list);
-	}
-	llist_node_t* current = list->head;
-	while (current && current->next != node)
-	{
-		current = current->next;
-	}
-	if (!current)
-	{
-		return -1;
-	}
-	current->next = node->next;
-	if (list->free_fn)
-	{
-		list->free_fn(node->data);
-	}
-	heap_free(node);
-	list->size--;
-	return 0;
 }
 
 void* llist_get_value_at(llist_t* list, size_t index)

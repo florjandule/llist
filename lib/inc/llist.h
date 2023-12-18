@@ -129,6 +129,37 @@ int llist_push_front(llist_t* list, void* data);
 int llist_push_back(llist_t* list, void* data);
 
 /**
+ * @brief Insert data before a node
+ *
+ * @param [in] list Pointer to the linked list object
+ * @param [in] reference_node Pointer to the reference node
+ * @param [in] data Pointer to the data
+ * @return int \c 0 if successful, otherwise \c -1
+ */
+int llist_insert_before(llist_t* list, const llist_node_t* reference_node, void* data);
+
+/**
+ * @brief Insert data after a node
+ *
+ * @param [in] list Pointer to the linked list object
+ * @param [in] reference_node Pointer to the reference node
+ * @param [in] data Pointer to the data
+ * @return int \c 0 if successful, otherwise \c -1
+ */
+int llist_insert_after(llist_t* list, llist_node_t* reference_node, void* data);
+
+/**
+ * @brief Remove a node from the list
+ *
+ * @details If the free data function is set, it will be called for the node
+ *
+ * @param [in] list Pointer to the linked list object
+ * @param [in] node Pointer to the node
+ * @return int \c 0 if successful, otherwise \c -1
+ */
+int llist_remove(llist_t* list, llist_node_t* node);
+
+/**
  * @brief Removes the data from the front of the list
  *
  * @details If the free data function is set, it will be called to free the data
@@ -209,43 +240,12 @@ llist_node_t* llist_get_next(const llist_node_t* node);
 llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const void* data);
 
 /**
- * @brief Insert data before a node
- *
- * @param [in] list Pointer to the linked list object
- * @param [in] reference_node Pointer to the reference node
- * @param [in] data Pointer to the data
- * @return int \c 0 if successful, otherwise \c -1
- */
-int llist_insert_before(llist_t* list, const llist_node_t* reference_node, void* data);
-
-/**
- * @brief Insert data after a node
- *
- * @param [in] list Pointer to the linked list object
- * @param [in] reference_node Pointer to the reference node
- * @param [in] data Pointer to the data
- * @return int \c 0 if successful, otherwise \c -1
- */
-int llist_insert_after(llist_t* list, llist_node_t* reference_node, void* data);
-
-/**
  * @brief Get the node value
  *
  * @param [in] node Pointer to the node
  * @return void* Pointer to the data if successful, otherwise \c NULL
  */
 void* llist_get_node(const llist_node_t* node);
-
-/**
- * @brief Remove a node from the list
- *
- * @details If the free data function is set, it will be called for the node
- *
- * @param [in] list Pointer to the linked list object
- * @param [in] node Pointer to the node
- * @return int \c 0 if successful, otherwise \c -1
- */
-int llist_remove(llist_t* list, llist_node_t* node);
 
 /**
  * @brief Get the value at the specified index
