@@ -29,12 +29,12 @@ void print_list(void)
 	{
 		return;
 	}
-	const llist_node_t* node = llist_get_first_node(list);
+	const llist_node_t* node = llist_get_first(list);
 	printf("[");
 	while (node != NULL)
 	{
-		printf("%s ", (char*)llist_get_node_value(node));
-		node = llist_get_next_node(node);
+		printf("%s ", (char*)llist_get_node(node));
+		node = llist_get_next(node);
 	}
 	printf("]\n");
 }
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 		llist_push_back(list, (void*)strings[i]);
 	}
 
-	llist_node_t* world_node = llist_find_node(list, compare, (void*)strings[1]);
+	llist_node_t* world_node = llist_find(list, compare, (void*)strings[1]);
 	if (world_node != NULL)
 	{
 		printf("Found node with data: %s\n", (char*)world_node->data);
@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 
 	print_list();
 
-	llist_remove_node(list, world_node);
+	llist_remove(list, world_node);
 
 	printf("List after removing node:\n");
 

@@ -143,7 +143,7 @@ int llist_push_back(llist_t* list, void* data)
 	return 0;
 }
 
-int llist_pop_front(llist_t* list)
+int llist_remove_first(llist_t* list)
 {
 	if (NULL == list)
 	{
@@ -245,7 +245,7 @@ int llist_is_empty(const llist_t* list)
 	return llist_size(list) == 0;
 }
 
-llist_node_t* llist_get_first_node(const llist_t* list)
+llist_node_t* llist_get_first(const llist_t* list)
 {
 	if (NULL == list)
 	{
@@ -255,7 +255,7 @@ llist_node_t* llist_get_first_node(const llist_t* list)
 	return list->head;
 }
 
-llist_node_t* llist_get_last_node(const llist_t* list)
+llist_node_t* llist_get_last(const llist_t* list)
 {
 	if (NULL == list)
 	{
@@ -265,7 +265,7 @@ llist_node_t* llist_get_last_node(const llist_t* list)
 	return list->tail;
 }
 
-llist_node_t* llist_get_next_node(const llist_node_t* node)
+llist_node_t* llist_get_next(const llist_node_t* node)
 {
 	if (NULL == node)
 	{
@@ -275,7 +275,7 @@ llist_node_t* llist_get_next_node(const llist_node_t* node)
 	return node->next;
 }
 
-llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, const void* data)
+llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const void* data)
 {
 	if (NULL == list || NULL == compare_fn)
 	{
@@ -294,7 +294,7 @@ llist_node_t* llist_find_node(llist_t* list, llist_compare_fn_t compare_fn, cons
 	return NULL;
 }
 
-int llist_insert_before_node(llist_t* list, const llist_node_t* reference_node, void* data)
+int llist_insert_before(llist_t* list, const llist_node_t* reference_node, void* data)
 {
 	if (NULL == list)
 	{
@@ -332,7 +332,7 @@ int llist_insert_before_node(llist_t* list, const llist_node_t* reference_node, 
 	return 0;
 }
 
-int llist_insert_after_node(llist_t* list, llist_node_t* reference_node, void* data)
+int llist_insert_after(llist_t* list, llist_node_t* reference_node, void* data)
 {
 	if (NULL == list)
 	{
@@ -356,7 +356,7 @@ int llist_insert_after_node(llist_t* list, llist_node_t* reference_node, void* d
 	return 0;
 }
 
-void* llist_get_node_value(const llist_node_t* node)
+void* llist_get_node(const llist_node_t* node)
 {
 	if (NULL == node)
 	{
@@ -366,7 +366,7 @@ void* llist_get_node_value(const llist_node_t* node)
 	return node->data;
 }
 
-int llist_remove_node(llist_t* list, llist_node_t* node)
+int llist_remove(llist_t* list, llist_node_t* node)
 {
 	if (NULL == list)
 	{
@@ -375,7 +375,7 @@ int llist_remove_node(llist_t* list, llist_node_t* node)
 
 	if (list->head == node)
 	{
-		return llist_pop_front(list);
+		return llist_remove_first(list);
 	}
 	if (list->tail == node)
 	{
