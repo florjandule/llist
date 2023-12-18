@@ -390,7 +390,7 @@ llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const voi
 	return NULL;
 }
 
-void* llist_get_node(const llist_node_t* node)
+void* llist_get_value(const llist_node_t* node)
 {
 	if (NULL == node)
 	{

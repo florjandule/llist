@@ -33,7 +33,7 @@ void print_list(void)
 	printf("[");
 	while (node != NULL)
 	{
-		printf("%s ", (char*)llist_get_node(node));
+		printf("%s ", (char*)llist_get_value(node));
 		node = llist_get_next(node);
 	}
 	printf("]\n");

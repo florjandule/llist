@@ -245,7 +245,7 @@ llist_node_t* llist_find(llist_t* list, llist_compare_fn_t compare_fn, const voi
  * @param [in] node Pointer to the node
  * @return void* Pointer to the data if successful, otherwise \c NULL
  */
-void* llist_get_node(const llist_node_t* node);
+void* llist_get_value(const llist_node_t* node);
 
 /**
  * @brief Get the value at the specified index
