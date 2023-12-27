@@ -66,3 +66,27 @@ TEST(LlistTest, llist_push_front_two_objects)
 	ret = llist_destroy(list);
 	ASSERT_EQ(0, ret);
 }
+
+TEST(LlistTest, llist_push_back_two_objects)
+{
+	int ret;
+	llist_t* list = llist_create(NULL);
+	ASSERT_NE(list, nullptr);
+
+	// Add first and test
+	ret = llist_push_back(list, (void*)list_objects[0]);
+	ASSERT_EQ(0, ret);
+	const char* first = (const char*)llist_get_value(llist_get_first(list));
+	ASSERT_NE(first, nullptr);
+	ASSERT_EQ(0, strcmp(first, "first"));
+
+	// Add second to back and test
+	ret = llist_push_back(list, (void*)list_objects[1]);
+	first = (const char*)llist_get_value(llist_get_first(list));
+	ASSERT_EQ(0, ret);
+	ASSERT_NE(first, nullptr);
+	ASSERT_EQ(0, strcmp(first, "first"));
+
+	ret = llist_destroy(list);
+	ASSERT_EQ(0, ret);
+}
