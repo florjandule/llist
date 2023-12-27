@@ -8,5 +8,9 @@
     "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
     "editor.formatOnSave": true,
     "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true
+    "files.trimFinalNewlines": true,
+    "cmake.configureArgs": [
+        "DCMAKE_C_COMPILER=clang",
+        "DCMAKE_CXX_COMPILER=clang++"
+    ]
 }
