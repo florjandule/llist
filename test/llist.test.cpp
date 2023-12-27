@@ -90,3 +90,48 @@ TEST(LlistTest, llist_push_back_two_objects)
 	ret = llist_destroy(list);
 	ASSERT_EQ(0, ret);
 }
+
+TEST(LlistTest, llist_insert_before_two_objects)
+{
+	int ret;
+	llist_t* list = llist_create(NULL);
+	ASSERT_NE(list, nullptr);
+
+	llist_push_front(list, (void*)list_objects[0]);
+
+	llist_node_t* last_node = llist_get_last(list);
+	EXPECT_NE(last_node, nullptr);
+
+	ret = llist_insert_before(list, last_node, (void*)list_objects[1]);
+	EXPECT_EQ(0, ret);
+
+	const char* first = (const char*)llist_get_value(llist_get_first(list));
+	EXPECT_NE(first, nullptr);
+	EXPECT_EQ(0, strcmp(first, "second"));
+
+	ret = llist_destroy(list);
+	EXPECT_EQ(0, ret);
+}
+
+TEST(LlistTest, llist_insert_before_three_objects)
+{
+	int ret;
+	llist_t* list = llist_create(NULL);
+	ASSERT_NE(list, nullptr);
+
+	llist_push_front(list, (void*)list_objects[0]);
+	llist_push_front(list, (void*)list_objects[1]);
+
+	llist_node_t* last_node = llist_get_last(list);
+	EXPECT_NE(last_node, nullptr);
+
+	ret = llist_insert_before(list, last_node, (void*)list_objects[2]);
+	EXPECT_EQ(0, ret);
+
+	const char* val = (const char*)llist_get_value_at(list, 1);
+	EXPECT_NE(val, nullptr);
+	EXPECT_EQ(0, strcmp(val, "third"));
+
+	ret = llist_destroy(list);
+	EXPECT_EQ(0, ret);
+}
