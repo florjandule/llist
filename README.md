@@ -13,15 +13,33 @@ This library provides a comprehensive set of functions for creating and managing
 
 ## Installation
 
-Provide instructions on how to install your library.
+- Go to the directory where you want to install the library. From now on, this directory will be referred to as `INSTALL_DIR`.
+- Clone the repository using the following command:
+
+```bash
+git clone https://github.com/florjandule/llist.git
+```
+
+### Using CMake
+
+- Add the subdirectory to your CMakeLists.txt file by adding the following line:
+`add_subdirectory(INSTALL_DIR/llist)`
+- Link the library to your target by adding the following line:
+`target_link_libraries(basic_demo LLISTLIB)`
+
+
+### Other Build Systems
+
+For other build systems, you can include the source files in your project.
+`llist.h` and `llist.c` are the only files you need to include in your project.
 
 ## Usage
 
-Provide examples on how to use your library.
+Please refer to the [samples](samples) directory for examples on how to use the library.
 
 ## Contributing
 
-Provide instructions on how others can contribute to your project.
+Contributions are welcome. Please open an issue or submit a pull request.
 
 ## License
 
